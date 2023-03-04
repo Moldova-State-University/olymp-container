@@ -1,0 +1,52 @@
+version: '3.1'
+
+services:
+  mariadb:
+    build:
+      context: ./mariadb/
+      dockerfile: Dockerfile
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mounts/database/:/var/lib/mysql
+    env_file:
+      - .env
+    networks:
+      - internal
+  php-fpm:
+    build:
+      context: ./php-fpm/
+      dockerfile: Dockerfile
+    volumes:
+      - ./mounts/data:/var/www/data
+    env_file:
+      - .env
+    networks:
+      - internal
+    depends_on:
+      - mariadb
+  sandbox:
+    build:
+      context: ./sandbox/
+      dockerfile: Dockerfile
+    volumes:
+      - ./mounts/data:/data
+    env_file:
+      - .env
+    networks:
+      - internal
+    depends_on:
+      - mariadb
+  nginx:
+    build:
+      context: ./nginx/
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - internal
+    depends_on:
+      - php-fpm
+networks:
+  internal:
+    driver: bridge

@@ -1,0 +1,6 @@
+# skip folders
+mounts/data/*
+mounts/database/*
+
+# secure environment files
+.env
