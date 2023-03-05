@@ -42,3 +42,8 @@ nginx:
 	@echo "build nginx image"; \
 	docker-compose --file docker-compose.yml build ${CACHE} nginx; \
 	echo "done"
+
+
+sandbox-bash:
+	@echo "run sandbox bash"; \
+	docker-compose exec -it sandbox bash
