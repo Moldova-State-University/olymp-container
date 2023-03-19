@@ -1,0 +1,21 @@
+BUILD_DIR = build
+PLATFORM_REPO = https://github.com/devrdn/olymp-platform.git
+SANDBOX_REPO = https://github.com/Kutabarik/olymp-sandbox.git
+
+
+all: prepare download build config
+
+prepare:
+	@echo prepare structure; \
+	mkdir -p $(BUILD_DIR)
+
+download:
+	cd $BUILD_DIR; \
+	git clone $PLATFORM_REPO; \
+	git clone $SANDBOX_REPO;
+
+build:
+	echo TODO;
+
+config:
+	echo TODO;
