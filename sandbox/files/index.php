@@ -66,6 +66,7 @@ $consumeTask = function (string $taskId) {
         echo "[{$taskId}] consumer sleeps {$data} seconds" . PHP_EOL;
         sleep($data);
     }
+    echo "consumer {$taskId} stops" . PHP_EOL;
 };
 
 /**
