@@ -1,5 +1,6 @@
 # CACHE=--no-cache
 CACHE=
+SANDBOX_BRANCH='32-скрипт-компиляции-и-выполнения'
 
 build:
 	@echo "build project images" ; \

@@ -37,6 +37,7 @@ services:
       - internal
     depends_on:
       - mariadb
+      - php-fpm
   nginx:
     build:
       context: ./nginx/
