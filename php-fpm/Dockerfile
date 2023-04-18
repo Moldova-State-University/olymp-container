@@ -23,10 +23,15 @@ RUN echo "DATABASE_URL=${DATABASE_URL}\n" > /var/www/html/.env \
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
 	php /usr/local/bin/composer self-update
 
+RUN curl -fsSL https://deb.nodesource.com/setup_current.x | bash - &&\
+    apt-get install -y nodejs
+
 WORKDIR /opt
 
 RUN git clone https://github.com/devrdn/olymp-platform.git && mv olymp-platform/server/* /var/www/html
 
 WORKDIR /var/www/html
 
-RUN composer install
+RUN composer install && npm install \
+    && php bin/console make:migration \
+    && php bin/console doctrine:migrations:migrate

@@ -1,20 +1,22 @@
-FROM debian:11
+FROM php:8.1-zts
+ARG SANDBOX_BRANCH=32-скрипт-компиляции-и-выполнения
 
-RUN apt update && apt upgrade -y
+# RUN echo "deb http://deb.debian.org/debian buster contrib non-free" > /etc/apt/sources.list.d/buster.list \
+#    && echo "deb http://deb.debian.org/debian buster-updates contrib non-free" > /etc/apt/sources.list.d/buster.updates.list
 
-RUN apt install -y git gcc g++ make php-cli cron nano
+RUN apt update && apt upgrade -y && apt install -y git gcc g++ make nano
 
 WORKDIR /opt
 
 RUN git clone https://github.com/Kutabarik/olymp-sandbox.git \
     && cd olymp-sandbox \
-    && git checkout winlin \
+    && git checkout ${SANDBOX_BRANCH} \
     && make \
     && cp bin/olymp-sandbox /usr/local/bin
+ RUN pecl install parallel \
+    && docker-php-ext-enable parallel
 
-# register cron job
-COPY sample.sh /opt/sample.sh
-COPY cronjob /etc/crontab
+# COPY ./files/ /opt/files/
+WORKDIR /opt/olymp-sandbox
 
-ENTRYPOINT ["/opt/sample.sh"]
-CMD ["cron","-f", "-l", "2"]
+CMD ["php","/opt/olymp-sandbox/manager/index.php"]
