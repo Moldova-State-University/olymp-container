@@ -32,12 +32,18 @@ class ThreadManager
     public static function start(): void
     {
         echo "start" . PHP_EOL;
-        self::$producer->run(function (Closure $closure, int $nrThreads) {
-            $closure($nrThreads);
-        }, [self::$producerTask, self::$nrConsumers]);
+        self::$producer->run(
+            function (Closure $closure, int $nrThreads) {
+                $closure($nrThreads);
+            },
+            [self::$producerTask, self::$nrConsumers]
+        );
 
         foreach (self::$consumers as $key => $consumer) {
-            $consumer->run(self::$consumerTask, [$key]);
+            $consumer->run(
+                self::$consumerTask,
+                [$key]
+            );
         }
     }
 
