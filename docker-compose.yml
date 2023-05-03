@@ -17,6 +17,8 @@ services:
     build:
       context: ./php-fpm/
       dockerfile: Dockerfile
+      args:
+        DATABASE_URL: mysql://${MARIADB_USER}:${MARIADB_PASSWORD}@${MARIADBHOST}:3306/${MARIADB_DATABASE}
     volumes:
       - ./mounts/data:/var/www/data
     env_file:
