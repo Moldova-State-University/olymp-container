@@ -4,7 +4,9 @@ ARG SANDBOX_BRANCH=32-скрипт-компиляции-и-выполнения
 # RUN echo "deb http://deb.debian.org/debian buster contrib non-free" > /etc/apt/sources.list.d/buster.list \
 #    && echo "deb http://deb.debian.org/debian buster-updates contrib non-free" > /etc/apt/sources.list.d/buster.updates.list
 
-RUN apt update && apt upgrade -y && apt install -y git gcc g++ make nano
+RUN apt update && apt upgrade -y && apt install -y git gcc g++ make nano \
+    && docker-php-ext-install -j$(nproc) pdo pdo_mysql \
+	&& docker-php-ext-enable pdo pdo_mysql
 
 WORKDIR /opt
 

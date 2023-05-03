@@ -14,6 +14,12 @@ up:
 
 rebuild: down build up
 
+full-rebuild: down clean build up
+
+clean:
+	rm -Rf ./mounts/data/*
+	rm -Rf ./mounts/database/*
+
 down:
 	@echo "down project" ; \
 	docker-compose -f docker-compose.yml down --remove-orphans; \
@@ -48,3 +54,18 @@ nginx:
 sandbox-bash:
 	@echo "run sandbox bash"; \
 	docker-compose exec -it sandbox bash
+
+help:
+	@echo "usage:"
+	@echo "  make build - build project"
+	@echo "  make up - up solution"
+	@echo "  make rebuild - down build up"
+	@echo "  make full-rebuild - down clean build up"
+	@echo "  make down - stop containers and remove"
+	@echo "  make stop - stop containers"
+	@echo "  make mariadb - build mariadb image"
+	@echo "  make php-fpm - build php-fpm image"
+	@echo "  make sandbox - build sandbox image"
+	@echo "  make nginx - build nginx image"
+	@echo "  make sandbox-bash - run bash into sandbox"
+	@echo "  make help - show this help"
