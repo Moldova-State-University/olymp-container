@@ -3,7 +3,7 @@ version: '3.1'
 services:
   mariadb:
     build:
-      context: ./mariadb/
+      context: ./files/mariadb/
       dockerfile: Dockerfile
     ports:
       - "3306:3306"
@@ -15,10 +15,7 @@ services:
       - internal
   php-fpm:
     build:
-      context: ./php-fpm/
-      dockerfile: Dockerfile
-      args:
-        DATABASE_URL: mysql://${MARIADB_USER}:${MARIADB_PASSWORD}@${MARIADBHOST}:3306/${MARIADB_DATABASE}
+      dockerfile: ./files/php-fpm/Dockerfile
     volumes:
       - ./mounts/data:/var/www/data
     env_file:
@@ -29,8 +26,7 @@ services:
       - mariadb
   sandbox:
     build:
-      context: ./sandbox/
-      dockerfile: Dockerfile
+      dockerfile: ./files/sandbox/Dockerfile
     volumes:
       - ./mounts/data:/data
     env_file:
@@ -42,7 +38,7 @@ services:
       - php-fpm
   nginx:
     build:
-      context: ./nginx/
+      context: ./files/nginx/
       dockerfile: Dockerfile
     ports:
       - "80:80"

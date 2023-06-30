@@ -1,0 +1,6 @@
+[submodule "submodules/platform"]
+	path = submodules/platform
+	url = git@github.com:Moldova-State-University/olymp-platform.git
+[submodule "submodules/sandbox"]
+	path = submodules/sandbox
+	url = git@github.com:Moldova-State-University/olymp-sandbox.git
