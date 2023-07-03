@@ -29,6 +29,24 @@ Folder `./mounts/data/` is mounted to the `/data` folder. This folder contains s
 
 ## How to start
 
-```shell
-$ make up
+### First start
+
+Prepare environment by submodules downloading and infrastructure creating.
+
+```bash
+# download submodules
+git submodule init
+git submodule update
+
+# create folders
+make init
 ```
+
+After that you can build images and up claster:
+
+```bash
+make build
+make up
+```
+
+Other commands you may check by running `make help`.

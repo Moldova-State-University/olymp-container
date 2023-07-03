@@ -1,6 +1,28 @@
 # CACHE=--no-cache
 CACHE=
-SANDBOX_BRANCH='32-скрипт-компиляции-и-выполнения'
+
+help:
+	@echo "usage:"
+	@echo "  make init - prepare infrastructure"
+	@echo "  make build - build project"
+	@echo "  make up - up solution"
+	@echo "  make rebuild - down build up"
+	@echo "  make full-rebuild - down clean build up"
+	@echo "  make down - stop containers and remove"
+	@echo "  make stop - stop containers"
+	@echo "  make mariadb - build mariadb image"
+	@echo "  make php-fpm - build php-fpm image"
+	@echo "  make sandbox - build sandbox image"
+	@echo "  make nginx - build nginx image"
+	@echo "  make sandbox-bash - run bash into sandbox"
+	@echo "  make help - show this help"
+
+init:
+	@echo "prepare structure" ; \
+	mkdir -p ./mounts/data ./mounts/database ; \
+	git submodule init ; \
+	git submodule update ; \
+	echo "done"
 
 build:
 	@echo "build project images" ; \
@@ -55,17 +77,3 @@ sandbox-bash:
 	@echo "run sandbox bash"; \
 	docker-compose exec -it sandbox bash
 
-help:
-	@echo "usage:"
-	@echo "  make build - build project"
-	@echo "  make up - up solution"
-	@echo "  make rebuild - down build up"
-	@echo "  make full-rebuild - down clean build up"
-	@echo "  make down - stop containers and remove"
-	@echo "  make stop - stop containers"
-	@echo "  make mariadb - build mariadb image"
-	@echo "  make php-fpm - build php-fpm image"
-	@echo "  make sandbox - build sandbox image"
-	@echo "  make nginx - build nginx image"
-	@echo "  make sandbox-bash - run bash into sandbox"
-	@echo "  make help - show this help"
