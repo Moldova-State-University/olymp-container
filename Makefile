@@ -62,9 +62,9 @@ php-fpm:
 	docker-compose --file docker-compose.yml build ${CACHE} php-fpm; \
 	echo "done"
 
-sandbox:
-	@echo "build sandbox image"; \
-	docker-compose --file docker-compose.yml build ${CACHE} sandbox; \
+judge:
+	@echo "build judge image"; \
+	docker-compose --file docker-compose.yml build ${CACHE} judge; \
 	echo "done"
 
 nginx:
@@ -73,7 +73,7 @@ nginx:
 	echo "done"
 
 
-sandbox-bash:
-	@echo "run sandbox bash"; \
-	docker-compose exec -it sandbox bash
+judge-bash:
+	@echo "run judge bash"; \
+	docker-compose exec -it judge bash
 
