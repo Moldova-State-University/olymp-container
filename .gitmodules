@@ -4,3 +4,6 @@
 [submodule "submodules/sandbox"]
 	path = submodules/sandbox
 	url = git@github.com:Moldova-State-University/olymp-sandbox.git
+[submodule "submodules/judge"]
+	path = submodules/judge
+	url = git@github.com:Moldova-State-University/olymp-judge.git

@@ -1,6 +1,8 @@
-BUILD_DIR = build
+ROOT_DIR = $(PWD)
+BUILD_DIR = $(ROOT_DIR)/build
 PLATFORM_REPO = https://github.com/devrdn/olymp-platform.git
 SANDBOX_REPO = https://github.com/Kutabarik/olymp-sandbox.git
+JUDGE_REPO = https://github.com/mcroitor/olymp-judge.git
 
 
 all: prepare download build config
@@ -10,9 +12,10 @@ prepare:
 	mkdir -p $(BUILD_DIR)
 
 download:
-	cd $BUILD_DIR; \
-	git clone $PLATFORM_REPO; \
-	git clone $SANDBOX_REPO;
+	cd $(BUILD_DIR); \
+	git clone $(PLATFORM_REPO); \
+	git clone $(SANDBOX_REPO); \
+	git clone $(JUDGE_REPO);
 
 build:
 	echo TODO;

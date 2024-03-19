@@ -1,6 +1,7 @@
 # skip folders
 mounts/data/*
 mounts/database/*
+build/
 
 # secure environment files
 .env
