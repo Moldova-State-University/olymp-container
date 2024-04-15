@@ -24,9 +24,9 @@ services:
       - internal
     depends_on:
       - mariadb
-  sandbox:
+  judge:
     build:
-      dockerfile: ./files/sandbox/Dockerfile
+      dockerfile: ./files/judge/Dockerfile
     volumes:
       - ./mounts/data:/data
     env_file:
