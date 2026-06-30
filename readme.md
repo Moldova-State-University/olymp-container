@@ -1,6 +1,6 @@
 # Container solution of Olymp project
 
-This solution assemble parts of Olymp project and up in the containers.
+This solution assembles parts of Olymp project and up in the containers.
 
 Parts of Olymp project are:
 
@@ -11,11 +11,11 @@ Parts of Olymp project are:
 
 ### nginx
 
-The clusters entry point.
+The cluster's entry point.
 
 ### mariadb
 
-MySQL databases are stored in the `./mounts/database` folder, that mounted to the `/var/lib/mysql`.
+MySQL databases are stored in the `./mounts/database` folder, that is mounted to the `/var/lib/mysql`.
 
 ### php-fpm
 
@@ -25,13 +25,13 @@ Folder `./mounts/data/` is mounted to the `/var/www/data` folder. This folder co
 
 ### sandbox
 
-Folder `./mounts/data/` is mounted to the `/data` folder. This folder contains submissions, tests and other resources. Sandbox check database for new submission detection. If found, compile and test submission.
+Folder `./mounts/data/` is mounted to the `/data` folder. This folder contains submissions, tests and other resources. Sandbox checks database for new submission detection. If found, compile and test submission.
 
 ## How to start
 
 ### First start
 
-Prepare environment by submodules downloading and infrastructure creating.
+Prepare environment by downloading submodules and creating infrastructure.
 
 ```bash
 # download submodules
@@ -42,7 +42,7 @@ git submodule update
 make init
 ```
 
-After that you can build images and up claster:
+After that you can build images and up cluster:
 
 ```bash
 make build
